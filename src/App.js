@@ -30,6 +30,11 @@ function App() {
   const handleSelectFriend = (friend) => {
     setSelectedFriend((p) => (p === "" ? friend : ""));
   };
+  const calculate = ({ index, amount }) => {
+    friendList[index].balance = friendList[index].balance + amount;
+    setFriendList([...friendList]);
+    setSelectedFriend("");
+  };
   return (
     <div className="app">
       <FriendList
@@ -37,16 +42,19 @@ function App() {
           setFriendList((p) => [...p, newFriend]);
         }}
       >
-        {friendList.map((friend) => (
+        {friendList.map((friend, i) => (
           <Friend
             {...friend}
+            index={i}
             key={friend.name}
             selectedFriend={selectedFriend}
             onSelectFriend={handleSelectFriend}
           />
         ))}
       </FriendList>
-      {selectedFriend && <SplitBill selectedFriend={selectedFriend} />}
+      {selectedFriend && (
+        <SplitBill selectedFriend={selectedFriend} calculate={calculate} />
+      )}
     </div>
   );
 }

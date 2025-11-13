@@ -1,5 +1,5 @@
 export default function Friend({
-  id,
+  index,
   name,
   image,
   balance,
@@ -17,9 +17,9 @@ export default function Friend({
       </p>
       <button
         className="button"
-        onClick={() => onSelectFriend({ id, name, balance })}
+        onClick={() => onSelectFriend({ index, name, balance })}
       >
-        {selectedFriend.id === id ? "Close" : "Select"}
+        {selectedFriend.index === index ? "Close" : "Select"}
       </button>
     </li>
   );
