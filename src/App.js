@@ -5,19 +5,16 @@ import Friend from "./components/Friend";
 
 const initialFriends = [
   {
-    id: 118836,
     name: "Clark",
     image: "https://i.pravatar.cc/48?u=118836",
     balance: -7,
   },
   {
-    id: 933372,
     name: "Sarah",
     image: "https://i.pravatar.cc/48?u=933372",
     balance: 20,
   },
   {
-    id: 499476,
     name: "Anthony",
     image: "https://i.pravatar.cc/48?u=499476",
     balance: 0,
@@ -25,16 +22,16 @@ const initialFriends = [
 ];
 function App() {
   const [friendList, setFriendList] = useState(initialFriends);
-  const [selectedFriend, setSelectedFriend] = useState(null);
+  const [selectedIndex, setSelectedIndex] = useState(null);
 
-  const handleSelectFriend = (friend) => {
-    setSelectedFriend((p) => (p === null ? friend : null));
+  const handleSelectFriend = (index) => {
+    setSelectedIndex((i) => (i === index ? null : index));
   };
   const calculate = (amount) => {
-    friendList[selectedFriend].balance =
-      friendList[selectedFriend].balance + amount;
+    friendList[selectedIndex].balance =
+      friendList[selectedIndex].balance + amount;
     setFriendList([...friendList]);
-    setSelectedFriend(null);
+    setSelectedIndex(null);
   };
   return (
     <div className="app">
@@ -48,14 +45,14 @@ function App() {
             {...friend}
             index={i}
             key={friend.name}
-            selectedFriend={selectedFriend}
+            selectedIndex={selectedIndex}
             onSelectFriend={handleSelectFriend}
           />
         ))}
       </FriendList>
-      {selectedFriend !== null && (
+      {selectedIndex !== null && (
         <SplitBill
-          friend={friendList[selectedFriend].name}
+          friend={friendList[selectedIndex].name}
           calculate={calculate}
         />
       )}

@@ -4,7 +4,7 @@ export default function Friend({
   image,
   balance,
   onSelectFriend,
-  selectedFriend,
+  selectedIndex,
 }) {
   return (
     <li>
@@ -17,8 +17,12 @@ export default function Friend({
           ? `${name} owes you ${balance}$`
           : `You owe ${name} ${Math.abs(balance)}$`}
       </p>
-      <button className="button" onClick={() => onSelectFriend(index)}>
-        {selectedFriend === index ? "Close" : "Select"}
+      <button
+        className="button"
+        id={index}
+        onClick={() => onSelectFriend(index)}
+      >
+        {selectedIndex === index ? "Close" : "Select"}
       </button>
     </li>
   );
