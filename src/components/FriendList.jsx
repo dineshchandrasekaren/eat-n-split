@@ -1,5 +1,6 @@
 import { useState } from "react";
 import AddFriend from "./AddFriend";
+import Button from "./Button";
 
 const reset = {
   name: "",
@@ -31,9 +32,9 @@ export default function FriendList({ children, onAddFriend }) {
         </form>
       )}
 
-      <button className="button" onClick={handleIsAddFriend}>
+      <Button onClick={handleIsAddFriend}>
         {isAddFriend ? "Close" : "Add Friend"}
-      </button>
+      </Button>
     </div>
   );
 }

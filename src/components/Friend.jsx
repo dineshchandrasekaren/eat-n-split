@@ -1,3 +1,5 @@
+import Button from "./Button";
+
 export default function Friend({
   index,
   name,
@@ -17,13 +19,9 @@ export default function Friend({
           ? `${name} owes you ${balance}$`
           : `You owe ${name} ${Math.abs(balance)}$`}
       </p>
-      <button
-        className="button"
-        id={index}
-        onClick={() => onSelectFriend(index)}
-      >
+      <Button onClick={() => onSelectFriend(index)}>
         {selectedIndex === index ? "Close" : "Select"}
-      </button>
+      </Button>
     </li>
   );
 }

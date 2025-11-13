@@ -1,3 +1,5 @@
+import Button from "./Button";
+
 export default function AddFriend({ setNewFriend, newFriend }) {
   const handleChangeNewFriend = ({ target }) => {
     const { id, value } = target;
@@ -21,7 +23,7 @@ export default function AddFriend({ setNewFriend, newFriend }) {
         value={newFriend.image}
         onChange={handleChangeNewFriend}
       />{" "}
-      <input type="submit" value="Add" className="button" />
+      <Button type="submit">Add</Button>
     </>
   );
 }

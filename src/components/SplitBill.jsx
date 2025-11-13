@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Button from "./Button";
 const reset = {
   bill: "",
   your: "",
@@ -59,14 +60,8 @@ export default function SplitBill({ friend, calculate }) {
         <option value="0">You</option>
         <option value="1">{friend}</option>
       </select>
-      <input type="submit" value="Split Bill" className="button" />
-      <button
-        type="button"
-        className="button"
-        onClick={() => setNewBill(reset)}
-      >
-        Reset
-      </button>
+      <Button type="submit">Split Bill</Button>
+      <Button onClick={() => setNewBill(reset)}>Reset</Button>
     </form>
   );
 }
