@@ -2,7 +2,6 @@ import { useState } from "react";
 import AddFriend from "./AddFriend";
 
 const reset = {
-  id: Date.now(),
   name: "",
   balance: 0,
   image: `https://i.pravatar.cc/${Date.now()}`,
