@@ -25,15 +25,16 @@ const initialFriends = [
 ];
 function App() {
   const [friendList, setFriendList] = useState(initialFriends);
-  const [selectedFriend, setSelectedFriend] = useState("");
+  const [selectedFriend, setSelectedFriend] = useState(null);
 
   const handleSelectFriend = (friend) => {
-    setSelectedFriend((p) => (p === "" ? friend : ""));
+    setSelectedFriend((p) => (p === null ? friend : null));
   };
-  const calculate = ({ index, amount }) => {
-    friendList[index].balance = friendList[index].balance + amount;
+  const calculate = (amount) => {
+    friendList[selectedFriend].balance =
+      friendList[selectedFriend].balance + amount;
     setFriendList([...friendList]);
-    setSelectedFriend("");
+    setSelectedFriend(null);
   };
   return (
     <div className="app">
@@ -52,8 +53,11 @@ function App() {
           />
         ))}
       </FriendList>
-      {selectedFriend && (
-        <SplitBill selectedFriend={selectedFriend} calculate={calculate} />
+      {selectedFriend !== null && (
+        <SplitBill
+          friend={friendList[selectedFriend].name}
+          calculate={calculate}
+        />
       )}
     </div>
   );

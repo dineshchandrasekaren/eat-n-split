@@ -4,7 +4,7 @@ const reset = {
   your: 0,
   who: 0,
 };
-export default function SplitBill({ selectedFriend, calculate }) {
+export default function SplitBill({ friend, calculate }) {
   const [newBill, setNewBill] = useState(reset);
   const their = newBill.bill - newBill.your;
 
@@ -23,16 +23,16 @@ export default function SplitBill({ selectedFriend, calculate }) {
     e.preventDefault();
     let amount = 0;
     if (newBill.who === 0) {
-      amount = their;
+      amount = their === 0 ? 0 : their;
     } else {
-      amount = -newBill.your;
+      amount = newBill.your === 0 ? 0 : -newBill.your;
     }
-    calculate({ amount, index: selectedFriend.index });
+    calculate(amount);
     setNewBill(reset);
   };
   return (
     <form className="form-split-bill" onSubmit={handleSubmit}>
-      <h2>Split the bill with {selectedFriend.name}</h2>
+      <h2>Split the bill with {friend}</h2>
       <label htmlFor="bill">💰 Bill value</label>
       <input
         type="number"
@@ -50,12 +50,12 @@ export default function SplitBill({ selectedFriend, calculate }) {
         onChange={handleChange}
         value={newBill.your}
       />{" "}
-      <label htmlFor="their">👫 {selectedFriend.name}'s expenses:</label>
+      <label htmlFor="their">👫 {friend}'s expenses:</label>
       <input type="number" id="their" min={0} disabled value={their} />{" "}
       <label htmlFor="who"> 🤑Who is paying the bill?</label>
       <select onChange={handleChange} id="who" value={newBill.who}>
         <option value="0">You</option>
-        <option value="1">{selectedFriend.name}</option>
+        <option value="1">{friend}</option>
       </select>
       <input
         type="submit"
